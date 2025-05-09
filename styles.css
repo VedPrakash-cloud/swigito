@@ -1,0 +1,140 @@
+body{
+    background-color: hsl(20, 50%, 98%) !important;
+}
+
+#content{
+    margin: 50px;
+}
+.main-box{
+    display: flex;
+    justify-content: space-between;
+}
+
+#main-heading{
+    color: hsl(14, 65%, 9%);
+    font-family: 'Red Hat Text';
+    font-weight: 700;
+    font-size: 30px;
+    margin-bottom: 2rem;
+}
+
+#cart{
+    margin-top:-70px;
+    height: max-content;
+    width: 100rem;
+    padding: 20px;
+    margin-left:15px;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+}
+
+.pic{
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+.item-category{
+    color: hsl(7, 20%, 60%);
+    font-family: 'Red Hat Text';
+    font-weight: 400;
+    font-size: 14px;
+    margin: 0;
+}
+.item-name{
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    font-size: 18px;
+    margin: 5px 0;
+}
+.item-price{
+    color: hsl(14, 86%, 42%);
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    font-size: 14px;
+    margin: 0 0 20px 0;
+}
+
+.btn-light{
+    position: relative;
+    bottom: 15px ;
+    border: 1px solid hsl(12, 20%, 44%);
+    text-wrap: nowrap;
+    border-radius: 30px;
+    width: 53%;
+    height: 30px;
+    font-weight: 550;
+    margin: 0 20%;
+}
+
+.btn-light:hover{
+    color: hsl(14, 86%, 42%);
+    border: 1px solid hsl(14, 86%, 42%);
+}
+
+#hidden{
+    display: none;
+}
+.btn1{
+    position: relative;
+    bottom: 15px;
+    background-color: hsl(14, 86%, 42%);
+    color: white;
+    border: none;
+    width: 53%;
+    height: 30px;
+    border-radius: 30px;
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    margin: 0 20%;
+}
+.minus-icon{
+    position: absolute;
+    left: 10px;
+    top: 8px;
+    border: 1px solid white;
+    border-radius: 50%;
+    padding: 5px 2px;    
+}
+.plus-icon{
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    border: 1px solid white;
+    border-radius: 50%;
+    padding: 2px;    
+}
+/* 
+.pic:hover{
+    border: 1px solid hsl(14, 86%, 42%);
+} */
+
+.cart-heading{
+    font-size: large;
+    float: left;
+    font-family: 'Red Hat Text';
+    font-weight: 700;
+    color: hsl(14, 86%, 42%);
+}
+
+
+.cart-text{
+    color: hsl(12, 20%, 44%);
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    font-size: x-small;
+}
+.cart-heading{
+    width: 100%;
+    text-align: left;
+}
+.cart-pic{
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+}
+.cart-photo{    
+    width: 100%;
+    align-items: center;
+}

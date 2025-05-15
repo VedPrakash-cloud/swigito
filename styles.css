@@ -1,9 +1,12 @@
 body{
     background-color: hsl(20, 50%, 98%) !important;
+    width: 100%;
+    height: 100%;
 }
 
 #content{
-    margin: 50px;
+    width: auto;
+    margin: 50px 0 0 50px;
 }
 .main-box{
     display: flex;
@@ -29,11 +32,12 @@ body{
     text-align: center;
 }
 
-.pic{
+.img-fluid{
     height: auto;
     width: 100%;
     object-fit: contain;
     border-radius: 8px;
+    margin: 0 !important;
 }
 .item-category{
     color: hsl(7, 20%, 60%);
@@ -56,21 +60,24 @@ body{
     margin: 0 0 20px 0;
 }
 
-.btn-light{
+.btn{
     position: relative;
-    bottom: 15px ;
-    border: 1px solid hsl(12, 20%, 44%);
-    text-wrap: nowrap;
-    border-radius: 30px;
-    width: 53%;
-    height: 30px;
-    font-weight: 550;
-    margin: 0 20%;
+    bottom: 20px;
+    border: 1px solid hsl(12, 20%, 44%) !important;
+    padding: 0.5em;
+    border-radius: 30px !important;
+    width: max-content;
+    margin: 0 25%;
 }
 
-.btn-light:hover{
-    color: hsl(14, 86%, 42%);
-    border: 1px solid hsl(14, 86%, 42%);
+.img-fluid{
+    width: auto !important;
+}
+
+.btn:hover{
+    color: hsl(14, 86%, 42%) !important;
+    border: 1px solid hsl(14, 86%, 42%) !important;
+    background-color: white !important;
 }
 
 #hidden{
@@ -105,10 +112,6 @@ body{
     border-radius: 50%;
     padding: 2px;    
 }
-/* 
-.pic:hover{
-    border: 1px solid hsl(14, 86%, 42%);
-} */
 
 .cart-heading{
     font-size: large;
@@ -116,18 +119,15 @@ body{
     font-family: 'Red Hat Text';
     font-weight: 700;
     color: hsl(14, 86%, 42%);
+    width: 100%;
+    text-align: left;
 }
-
 
 .cart-text{
     color: hsl(12, 20%, 44%);
     font-family: 'Red Hat Text';
     font-weight: 600;
     font-size: x-small;
-}
-.cart-heading{
-    width: 100%;
-    text-align: left;
 }
 .cart-pic{
     width: 50%;
@@ -137,4 +137,90 @@ body{
 .cart-photo{    
     width: 100%;
     align-items: center;
+}
+
+.cart-items{
+    position: relative;
+    border-bottom: 1px solid hsl(13, 31%, 94%);
+    text-align: left;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+.item-cart{
+    margin: 0;
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    font-size:small;
+}
+.item-count{
+    margin-right: 5px;
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    font-size:14px;
+    color: hsl(14, 86%, 42%);
+}
+
+.cart-price{
+    margin-right: 5px;
+    font-family: 'Red Hat Text';
+    font-weight: 500;
+    font-size:14px;
+    color: hsl(7, 20%, 60%);
+}
+.cart-cost{
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    font-size:14px;
+    color: hsl(12, 20%, 44%);
+}
+.cancel-item{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateX(-50%);
+    border: 1px solid hsl(12, 20%, 44%);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 2px;
+}
+
+.total-cost{
+    align-items: center;
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-family: 'Red Hat Text';
+}
+span{
+    font-size: small;
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+}
+
+.carbon-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(20, 50%, 98%);
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.text{
+    text-wrap: nowrap;
+    margin: 0 0 0 3px;
+    font-family: 'Red Hat Text';
+    font-size:x-small;
+}
+
+.confirm-button{
+    border-radius: 30px;
+    border: none;
+    width: 100%;
+    padding: 10px 0;
+    background-color: hsl(14, 86%, 42%);
+    color: white;
+    font-family: 'Red Hat Text';
 }

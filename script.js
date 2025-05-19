@@ -198,7 +198,7 @@ function confirmOrder(){
         let hideConfirmation = document.querySelector('.confirm-hidden');
         hideConfirmation.style.display = 'none';
         setTimeout(() => {
-            alert('you need to reload the page...')
+            location.reload();
         }, 100);
     }
 

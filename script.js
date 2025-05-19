@@ -7,6 +7,7 @@ async function fetchData(){
         }
         const data = await response.json();
         renderData(data);
+        // confirmOrder(data);
     } catch(error){
         console.error('Error fetching JSON file', error);
         document.getElementById('content').innerHTML=`<p style="color:red;"> Failed to load data. Please try again later.</p>`;
@@ -68,6 +69,7 @@ function renderCart(){
     });
 
 //-- total cost of order starts here --//
+
     let total = 0;
     Object.values(cart).forEach(item=>{
         total += item.quantity*item.price;
@@ -100,23 +102,120 @@ function renderCart(){
     confirm.classList.add('confirm-button');
     confirm.textContent = 'Confirm Order';
     confirm.onclick=()=>{
-        if(total === 0){
-            alert('please add some items')
-        }else{
-            alert("Your Order is confirmed!!!");
-            alert(`Total amount paid $ ${total.toFixed(2)}`);
-        }
+        let hideConfirmation = document.querySelector('.confirm-hidden');
+        hideConfirmation.style.display = 'block';
+        confirmOrder();
     };
 
     cartContainer.appendChild(confirm);
 
 };
 
+function confirmOrder(){
+    let confirmOrder = document.getElementById('order-confirm');
+
+    let greenTick = document.createElement('img');
+    greenTick.classList.add('green');
+    greenTick.src = `assets/images/icon-order-confirmed.svg`;
+    greenTick.alt = 'confirmation';
+
+    let confirmMessage = document.createElement('h1');
+    confirmMessage.classList.add('msg');
+    confirmMessage.textContent = 'Order Confirmed';
+
+    let subMessage = document.createElement('p');
+    subMessage.classList.add('sub-msg');
+    subMessage.textContent = 'We hope you enjoy your food!';
+
+    let itemBox = document.createElement('div');
+    itemBox.classList.add('item-box');
+
+    let totalPrice = 0;
+
+    Object.values(cart).forEach(item =>{
+
+        let itemContainer = document.createElement('div');
+        itemContainer.classList.add('item-container');
+
+        let itemImg = document.createElement('img');
+        itemImg.classList.add('thumb');
+        itemImg.src = item.image.thumbnail;
+        itemImg.alt = item.name;
+        console.log('cart item:',item);
+
+        let itemDetail = document.createElement('div');
+        itemDetail.classList.add('item-detail');
+    
+        let itemIdentifier = document.createElement('h6');
+        itemIdentifier.classList.add('name-item');
+        itemIdentifier.textContent = item.name;
+    
+        let numberOfItems = document.createElement('span');
+        numberOfItems.classList.add('number');
+        numberOfItems.textContent = `${item.quantity}x`;
+    
+        let priceOfItem = document.createElement('span');
+        priceOfItem.classList.add('price');
+        priceOfItem.textContent = `@ $${item.price.toFixed(2)}`;
+
+        itemDetail.appendChild(itemIdentifier);
+        itemDetail.appendChild(numberOfItems);
+        itemDetail.appendChild(priceOfItem);
+    
+        let totalPriceOfItem = document.createElement('p');
+        totalPriceOfItem.classList.add('total-price');
+        totalPriceOfItem.textContent = `$ ${(item.quantity * item.price).toFixed(2)}`;
+
+        totalPrice += item.quantity*item.price;
+    
+        itemContainer.appendChild(itemImg);
+        itemContainer.appendChild(itemDetail);
+        itemContainer.appendChild(totalPriceOfItem);
+
+        itemBox.appendChild(itemContainer);
+    });
+
+    let totalAmount = document.createElement('div');
+    totalAmount.classList.add('total-amount');
+
+    let totalElement = document.createElement('span');
+    totalElement.classList.add('order-total');
+    totalElement.innerHTML = `Order Total`;
+    totalAmount.appendChild(totalElement);
+
+    let totalNumber = document.createElement('span')
+    totalNumber.classList.add('total-number');
+    totalNumber.innerHTML = `$${totalPrice.toFixed(2)}`
+    totalAmount.appendChild(totalNumber);
+    itemBox.appendChild(totalAmount);
+    
+
+
+    let newOrder = document.createElement('button');
+    newOrder.classList.add('new-order');
+    newOrder.textContent = 'Start New Order';
+    newOrder.onclick = () => {
+        let hideConfirmation = document.querySelector('.confirm-hidden');
+        hideConfirmation.style.display = 'none';
+        setTimeout(() => {
+            alert('you need to reload the page...')
+        }, 100);
+    }
+
+    confirmOrder.appendChild(greenTick);
+    confirmOrder.appendChild(confirmMessage);
+    confirmOrder.appendChild(subMessage);
+    confirmOrder.appendChild(itemBox);
+    confirmOrder.appendChild(newOrder);
+}
+
+
 function updateCart(item, change){
     if(!cart[item.category]){
-        cart[item.category] = {name:item.name, price:item.price, quantity:0};
+        cart[item.category] = {...item, quantity:change};
+    }else{
+        cart[item.category].quantity += change;
     }
-    cart[item.category].quantity += change;
 
     if(cart[item.category].quantity < 1 && change > 0){
         cart[item.category].quantity = 1;
@@ -132,9 +231,12 @@ function renderData(data){
         let card = document.createElement('div');
         card.classList.add('col-4');
 
+        let hideConfirmation = document.querySelector('.confirm-hidden');
+        hideConfirmation.style.display='none';
+
         let img = document.createElement('img');
         img.classList.add('img-fluid');
-        img.src = item.image.tablet;
+        img.src = item.image.desktop;
         img.alt = item.name;
 
         // Add to cart Button//
@@ -153,6 +255,10 @@ function renderData(data){
 
         addButton.onclick = ()=>{
             updateCart(item, 1);
+
+            count = cart[item.category]?.quantity || 1;
+            text.textContent = count;
+
             addButton.style.display='none';
             secondButton.style.display='block';
         }
@@ -161,7 +267,7 @@ function renderData(data){
 
         //counter button starts//
 
-        let count = 1;
+        let count = cart[item.category]?.quantity || 1;
 
         let secondButton = document.createElement('button');
         secondButton.id = 'hidden';
@@ -189,23 +295,19 @@ function renderData(data){
             let relativeOffSetX = event.clientX - rect.left;
             let middlePoint = secondButton.clientWidth/2;
 
-            console.log(`relativeOffSetX: ${relativeOffSetX}, MiddlePoint: ${middlePoint}`);
             if(relativeOffSetX < middlePoint){
                 count = Math.max(0, count-1);
-                console.log("minus is clicked");
             }else{
                 if(!cart[item.category]){
                     cart[item.category] = {name: item.name, quantity: 0, price: item.price};
                 }else{
                     count += 1;
                 }
-                
-                console.log("plus is clicked");
             }
             cart[item.category].quantity = count;
             updateCartCount();
 
-            text.textContent = count;
+            text.textContent = cart[item.category].quantity;
 
             if (cart[item.category].quantity === 0) {
                 delete cart[item.category];

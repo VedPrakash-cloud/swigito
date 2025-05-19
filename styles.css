@@ -224,3 +224,112 @@ span{
     color: white;
     font-family: 'Red Hat Text';
 }
+
+#order-confirm{
+    position: absolute;
+    top: 10%;
+    right: 50%;
+    transform: translateX(50%);
+    border: none;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.green{
+    height: 10%;
+    width: 10%;
+    object-fit: contain;
+}
+.msg{
+    font-family: 'Red Hat Text';
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.sub-msg{
+    font-family: 'Red Hat Text';
+    margin-top: 0;
+}
+
+.item-box{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: hsl(13, 31%, 94%);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.item-container{
+    display: flex;
+    padding-bottom: 15px;
+    border-bottom: 1px solid hsl(14, 30%, 90%);
+    align-items: center;
+}
+.thumb{
+    height: 20%;
+    width: 20%;
+    object-fit: contain;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.item-detail{
+    margin-right: 15px;
+}
+
+.name-item{
+    font-family: "Red Hat Text";
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.number{
+    margin-right: 20px;
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    color: hsl(14, 86%, 42%);
+}
+
+.price{
+    margin: 0;
+    word-spacing: -1px;
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    color: hsl(15, 25%, 72%);
+}
+
+.total-price{
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    position: absolute;
+    right: 0;
+    transform: translateX(-75%);
+    margin: 0;
+}
+
+.total-amount{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+}
+.total-number{
+    font-size: 20px;
+}
+.new-order{
+    width: 100%;
+    border-radius: 30px;
+    background-color: hsl(14, 86%, 42%);
+    color: white;
+    font-family: 'Red Hat Text';
+    font-weight: 600;
+    border: none;
+    padding: 10px;
+}
+
+@media (max-width: 600px){
+    .row,.main-container{
+        display: flex;
+        flex-direction: column;
+    }
+}
